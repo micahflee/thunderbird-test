@@ -1,0 +1,47 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, you can obtain one at http://mozilla.org/MPL/2.0/. */
+
+tree-view-listbox {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  tree-view-listbox {
+    scroll-behavior: smooth;
+  }
+}
+
+tree-view-listbox:focus {
+  outline: none;
+}
+
+tree-view-listbox > * {
+  position: absolute;
+  left: 0;
+  right: 0;
+  cursor: default;
+}
+
+tree-view-listbox > .selected {
+  background-color: var(--in-content-button-background);
+}
+
+tree-view-listbox:focus > .current {
+  outline: 2px dotted var(--in-content-focus-outline-color);
+  outline-offset: -2px;
+  z-index: 1;
+}
+
+tree-view-listbox:focus > .selected {
+  color: var(--in-content-item-selected-text);
+  background-color: var(--in-content-item-selected);
+}
+
+tree-view-listbox:focus > .current.selected {
+  outline: 1px dashed var(--in-content-item-selected-text);
+  outline-offset: -1px;
+}

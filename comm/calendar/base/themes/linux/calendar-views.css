@@ -1,0 +1,38 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this file,
+ * You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+@import url(chrome://calendar/skin/shared/calendar-views.css);
+
+/* Navigation controls for the views */
+#calendar-nav-control {
+  background-color: AppWorkspace;
+  --calview-tabline-color: SelectedItem;
+  --calview-border-color: ThreeDShadow;
+  --calview-border-bottom-color: ThreeDShadow;
+}
+
+#view-box {
+  background-color: Field;
+  border-width: 0 0 1px 1px;
+}
+
+.navigation-inner-box {
+  padding-top: 1px;
+}
+
+radio.calview {
+  margin-bottom: 0;
+}
+
+radio.calview[selected="true"] {
+  background-color: Field;
+}
+
+.navigation-bottombox {
+  background-color: Field;
+}
+
+.today-navigation-button {
+  padding-top: 0;
+}

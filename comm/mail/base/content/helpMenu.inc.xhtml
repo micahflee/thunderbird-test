@@ -1,0 +1,56 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+<menu id="helpMenu"
+#ifdef XP_WIN
+            label="&helpMenuWin.label;" accesskey="&helpMenuWin.accesskey;"
+#else
+            label="&helpMenu.label;" accesskey="&helpMenu.accesskey;"
+#endif
+            onpopupshowing="buildHelpMenu();">
+        <menupopup id="menu_HelpPopup">
+          <menuitem id="menu_openHelp"
+                    label="&productHelp.label;"
+#ifndef XP_MACOSX
+                    accesskey="&productHelp.accesskey;"
+#endif
+                    key="key_openHelp"
+                    oncommand="openSupportURL();"/>
+          <menuitem id="menu_openTour"
+                    label="&helpShowTour2.label;"
+                    accesskey="&helpShowTour2.accesskey;"
+                    oncommand="openLinkText(event, 'tourURL');"/>
+          <menuitem id="menu_keyboardShortcuts"
+                    label="&helpKeyboardShortcuts.label;"
+                    accesskey="&helpKeyboardShortcuts.accesskey;"
+                    oncommand="openLinkText(event, 'keyboardShortcutsURL');"/>
+          <menuseparator/>
+          <menuitem id="getInvolved"
+                    label="&helpGetInvolvedPage.label;"
+                    accesskey="&helpGetInvolvedPage.accesskey;"
+                    oncommand="openLinkText(event, 'getInvolvedURL');"/>
+          <menuitem id="donationsPage"
+                    label="&helpDonationsPage.label;"
+                    accesskey="&helpDonationsPage.accesskey;"
+                    oncommand="openLinkText(event, 'donateURL');"/>
+          <menuitem id="feedbackPage"
+                    label="&helpFeedbackPage.label;"
+                    accesskey="&helpFeedbackPage.accesskey;"
+                    oncommand="openLinkText(event, 'feedbackURL');"/>
+          <menuseparator id="functionsSeparator"/>
+          <menuitem id="helpTroubleshootMode"
+                    data-l10n-id="menu-help-enter-troubleshoot-mode"
+                    oncommand="safeModeRestart();"/>
+          <menuitem id="aboutsupport_open"
+                    data-l10n-id="menu-help-more-troubleshooting-info"
+                    oncommand="openAboutSupport();"/>
+#ifndef XP_MACOSX
+          <menuseparator id="aboutSeparator"/>
+#endif
+          <menuitem id="aboutName"
+                    label="&aboutProduct2.label;"
+                    accesskey="&aboutProduct2.accesskey;"
+                    oncommand="openAboutDialog();"/>
+        </menupopup>
+      </menu>

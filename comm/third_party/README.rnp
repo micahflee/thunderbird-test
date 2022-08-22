@@ -1,0 +1,48 @@
+Directory ./rnp contains a copy of rnp which has been obtained from:
+https://github.com/rnpgp/rnp
+
+[commit f06439f77e50974e427023f77a459843e46ac682]
+
+For licensing information, please refer to the included documentation.
+
+To update this copy, run "update_rnp.sh" in this directory from this directory
+within a complete build tree (including mozilla-central) as "mach python" is
+used.
+
+update_rnp.sh will generate rnp/src/lib/version.h from rnp/src/lib/version.h.in
+and modify rnp/src/lib/config.h.in so it can be processed by mozbuild at
+build time.
+
+You may pass a git revision to update_rnp.sh to update to that revision. Running
+without parameters updates to the latest master.
+
+The following files and directories are removed by update_rnp.sh:
+ci
+cmake
+git-hooks
+.github
+.cirrus.yml
+.clang-format
+.gitignore
+_config.yml
+docker.sh
+travis.sh
+vcpkg.txt
+Brewfile
+CMakeLists.txt
+CMakeSettings.json
+
+
+The following files were added or modified by MZLA Technologies to integrate
+with mozbuild:
+moz.build
+module.ver
+rnp.symbols
+src/lib/config.h.in
+src/lib/rnp/rnp_export.h
+src/version.h
+
+The following patches were applied:
+Bug 1641720 - patches/rnp/disable_obsolete_ciphers.patch
+Bug 1763641 - patches/rnp/bug_1763641.patch
+Bug 1768424 - patches/rnp/bug_1768424.patch

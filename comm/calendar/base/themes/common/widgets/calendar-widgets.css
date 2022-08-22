@@ -1,0 +1,305 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this file,
+ * You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+.calendar-list-header {
+  background-color: var(--viewCalendarHeaderBackground);
+  padding-block: 2px;
+}
+
+.calendar-list-create {
+  list-style-image: var(--icon-add);
+  margin-block: 0;
+  margin-inline: 3px;
+  padding: 3px !important;
+  border: none !important;
+  min-width: auto;
+}
+
+.calendar-list-create .toolbarbutton-text:not([value]) {
+  display: none;
+}
+
+checkbox.treenode-checkbox {
+  margin-inline: 6px;
+  margin-block: 0;
+  font-weight: bold;
+}
+
+checkbox.treenode-checkbox.agenda-checkbox {
+  padding-block: 6px;
+}
+
+checkbox.treenode-checkbox > .checkbox-check {
+  appearance: none;
+  -moz-box-align: center;
+  border: none;
+  width: 10px;
+  height: 10px;
+  color: inherit;
+  background-image: var(--icon-nav-down-sm);
+  background-size: contain;
+  background-color: transparent !important;
+  -moz-context-properties: stroke;
+  stroke: currentColor;
+}
+
+checkbox.treenode-checkbox:not([checked="true"]) > .checkbox-check {
+  transform: rotate(-90deg);
+}
+
+checkbox.treenode-checkbox:not([checked="true"]):-moz-locale-dir(rtl) > .checkbox-check {
+  transform: rotate(90deg);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  checkbox.treenode-checkbox > .checkbox-check {
+    transition: transform 200ms ease;
+  }
+}
+
+.checkbox-label-box {
+  margin-inline-start: 4px;
+}
+
+.checkbox-icon {
+  margin-inline-end: 2px;
+}
+
+.checkbox-label {
+  margin: 0 !important;
+}
+
+checkbox.treenode-checkbox > .checkbox-label-center-box > .checkbox-label-box > .checkbox-label {
+  font-weight: bold;
+  border-bottom: 1px solid -moz-Dialog;
+}
+
+.view-navigation-button {
+  appearance: none;
+  -moz-user-focus: normal;
+  min-width: 22px;
+  margin-inline: 2px;
+  border: 1px solid transparent;
+  border-radius: var(--toolbarbutton-border-radius);
+  -moz-context-properties: stroke;
+  stroke: currentColor;
+  list-style-image: var(--icon-nav-right);
+  -moz-user-focus: normal;
+}
+
+.today-navigation-button:focus-visible:not(:hover),
+.view-navigation-button:focus-visible:not(:hover) {
+  outline: 2px solid var(--focus-outline-color);
+  outline-offset: -2px;
+}
+
+.view-navigation-button:not([disabled="true"]):hover {
+  background: var(--toolbarbutton-hover-background);
+  border-color: var(--toolbarbutton-hover-bordercolor);
+  box-shadow: var(--toolbarbutton-hover-boxshadow);
+  color: inherit;
+  outline: none;
+}
+
+:root[lwt-tree-brighttext] .view-navigation-button:not([disabled="true"]):hover {
+  background: rgba(255, 255, 255, .25);
+  border-color: rgba(255, 255, 255, .5);
+}
+
+.view-navigation-button:not([disabled="true"]):hover:active {
+  background: var(--toolbarbutton-active-background);
+  border-color: var(--toolbarbutton-active-bordercolor);
+  box-shadow: var(--toolbarbutton-active-boxshadow);
+  transition-duration: 10ms;
+}
+
+:root[lwt-tree-brighttext] .view-navigation-button:not([disabled="true"]):hover:active {
+  background: rgba(255, 255, 255, .4);
+  border-color: rgba(255, 255, 255, .7);
+  box-shadow: 0 0 rgba(255, 255, 255, .4) inset;
+}
+
+.view-navigation-button[disabled="true"] {
+  opacity: .3;
+}
+
+.view-navigation-button:-moz-locale-dir(ltr)[type="prev"] > .toolbarbutton-icon,
+.view-navigation-button:-moz-locale-dir(rtl)[type="next"] > .toolbarbutton-icon {
+  list-style-image: var(--icon-nav-left-sm);
+}
+
+.view-navigation-button > .toolbarbutton-text  {
+  display: none;
+}
+
+.selected-text {
+  font-weight: bold;
+}
+
+.selected-text:not([selected="true"]),
+.unselected-text[selected="true"] {
+  visibility: hidden;
+}
+
+.categories-textbox .textbox-search-icon {
+  list-style-image: none;
+  cursor:default;
+}
+
+.categories-textbox {
+  appearance: auto;
+  -moz-default-appearance: textfield;
+}
+
+/*
+ * Note that #calendar-list is used for 2 separate lists that look similar,
+ * but are otherwise independent:
+ *
+ * - calendar-providerUninstall-dialog.xhtml
+ * - calendar-tab-panels.inc.xhtml
+ *
+ * Please be careful when changing the following CSS.
+ */
+
+#calendar-list-inner-pane {
+  display: flex;
+  flex-direction: column;
+  height: 0; /* Force overflow if necessary. */
+}
+
+#calendar-list-inner-pane > #calendar-list {
+  overflow: auto;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+}
+
+#calendar-list > li {
+  display: flex;
+  border: 1px transparent solid;
+  padding-block: 2px;
+  padding-inline-start: 14px;
+  align-items: center;
+  transition: opacity 250ms;
+}
+
+#calendar-list > li.selected {
+  background-color: -moz-cellhighlight;
+  color: -moz-cellhighlighttext;
+}
+
+#calendar-list:focus-within > li.selected {
+  background-color: SelectedItem;
+  color: SelectedItemText;
+}
+
+#calendar-list > li.dragging {
+  opacity: 0.75;
+}
+
+:root[lwt-tree] #calendar-list > li.selected {
+  border-color: var(--sidebar-highlight-background-color, hsla(0,0%,80%,.3));
+  background: var(--sidebar-highlight-background-color, hsla(0,0%,80%,.3));
+  color: var(--sidebar-highlight-text-color, var(--sidebar-text-color));
+}
+
+:root[lwt-tree] #calendar-list:focus > li.selected {
+  border-color: var(--sidebar-highlight-background-color, hsla(0,0%,80%,.6));
+  color: var(--sidebar-highlight-text-color, var(--sidebar-text-color));
+}
+
+:root[lwt-tree-brighttext] #calendar-list > li.selected {
+  border-color: var(--sidebar-highlight-background-color, rgba(249,249,250,.1));
+  background: var(--sidebar-highlight-background-color, rgba(249,249,250,.1));
+}
+
+:root[lwt-tree-brighttext] #calendar-list:focus > li.selected {
+  border-color: var(--sidebar-highlight-background-color, rgba(249,249,250,.3));
+  color: var(--sidebar-highlight-text-color, var(--sidebar-text-color));
+}
+
+#calendar-list > li > button.calendar-enable-button {
+  color: #fff !important;
+  background: #6b80a4;
+  padding: 1px 4px;
+  font-size: 0.75em;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 12px;
+  min-width: auto;
+  min-height: auto;
+}
+
+#calendar-list > li > button.calendar-enable-button:hover,
+#calendar-list > li > button.calendar-enable-button:focus,
+#calendar-list > li > button.calendar-enable-button:active {
+  background: #2c4c82;
+}
+
+#calendar-list > li > .calendar-displayed {
+  margin-block: 0;
+}
+
+#calendar-list > li > .calendar-displayed {
+  appearance: none;
+  background-image: var(--icon-hidden);
+  color: inherit;
+  background-color: transparent !important;
+  border-style: none;
+  opacity: 0.7;
+  -moz-context-properties: fill, stroke;
+  fill: color-mix(in srgb, currentColor 20%, transparent);
+  stroke: currentColor;
+  transition: opacity .2s ease;
+  width: 16px;
+  height: 16px;
+}
+
+#calendar-list > li > .calendar-displayed:hover,
+#calendar-list > li > .calendar-displayed:focus {
+  opacity: 0.9 !important;
+}
+
+#calendar-list > li > .calendar-displayed:checked {
+  background-image: var(--icon-eye);
+  opacity: 0;
+}
+
+#calendar-list > li:hover > .calendar-displayed:checked {
+  opacity: 0.7;
+}
+
+#calendar-list > :is(li, richlistitem) > .calendar-color {
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+#calendar-list > li > .calendar-name {
+  flex: 1;
+  margin: 2px 4px;
+}
+
+#calendar-list > li[calendar-disabled]:not(.selected) > .calendar-name {
+  color: #808080;
+}
+
+#calendar-list > li > .calendar-readstatus {
+  width: 16px;
+  height: 16px;
+  margin: 0 2px;
+  -moz-context-properties: fill, stroke;
+  fill: color-mix(in srgb, currentColor 20%, transparent);
+  stroke: currentColor;
+}
+
+#calendar-list > li > .calendar-readstatus:not([src]) {
+  visibility: hidden;
+}
+
+#calendar-list > richlistitem {
+  -moz-box-align: center;
+}

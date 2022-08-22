@@ -1,0 +1,41 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, you can obtain one at http://mozilla.org/MPL/2.0/. */
+
+@import url("chrome://messenger/skin/shared/contextMenu.css");
+
+menupopup {
+  appearance: none;
+  background-color: transparent;
+}
+
+menupopup::part(content) {
+  margin: 1px;
+}
+
+menupopup .menu-iconic-icon {
+  width: 16px;
+}
+
+menupopup > menu > .menu-text,
+menupopup > menuitem > .menu-text {
+  margin-inline-start: 16px !important;
+}
+
+menupopup > menuitem > .menu-right {
+  margin-inline-end: -4px;
+  appearance: none;
+}
+
+/* Only show the system checkmark on main window menu */
+#windowPopup > menuitem[checked="true"] {
+  list-style-image: none;
+}
+
+menulist > menupopup > menuitem:is([checked="true"], [selected="true"])::before {
+  margin-inline: 0 -15px;
+}
+
+menulist > menupopup > menuitem.menuitem-iconic::before {
+  display: none;
+}

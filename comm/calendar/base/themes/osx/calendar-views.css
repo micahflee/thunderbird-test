@@ -1,0 +1,79 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this file,
+ * You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+@import url(chrome://calendar/skin/shared/calendar-views.css);
+
+calendar-event-column {
+  -moz-user-focus: normal;
+}
+
+/* Navigation controls for the views */
+#calendar-nav-control {
+  background-color: #e8e8e8;
+  --calview-tabline-color: AccentColor;
+  --calview-border-color: #bdbdbd;
+  --calview-border-bottom-color: #d2d2d2;
+}
+
+#view-box {
+  background-color: white;
+  border-width: 0 0 0 1px;
+}
+
+.calview-tabs {
+  -moz-box-align: stretch;
+  padding-left: 0;
+  padding-right: 0;
+  margin-bottom: 0;
+  position: static;
+}
+
+radio.calview[selected="true"] {
+  background-color: #fff;
+}
+
+.view-header {
+  margin-top: 3px;
+  margin-bottom: 1px;
+}
+
+.navigation-bottombox {
+  background-color: white;
+}
+
+.view-navigation-button {
+  margin-top: 2px;
+}
+
+.today-navigation-button {
+  margin-top: 2px;
+  padding-top: 2px;
+}
+
+@media (prefers-color-scheme: dark) {
+  #calendar-nav-control {
+    background-color: ButtonFace;
+  }
+
+  #view-box {
+    background-color: Field;
+    border-color: Field;
+  }
+
+  radio.calview[selected="true"],
+  .navigation-bottombox {
+    background-color: Field;
+  }
+}
+
+@media not (prefers-color-scheme: dark) {
+  #calendar-nav-control {
+    background-color: ButtonFace;
+  }
+
+  #calendar-nav-control:-moz-window-inactive {
+    background: -moz-mac-chrome-inactive;
+    --calview-border-bottom-color: hsl(0, 0%, 85%);
+  }
+}

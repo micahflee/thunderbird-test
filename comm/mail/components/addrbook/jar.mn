@@ -1,0 +1,34 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+messenger.jar:
+    content/messenger/addressbook/abCommon.js                   (content/abCommon.js)
+    content/messenger/addressbook/abEditListDialog.xhtml        (content/abEditListDialog.xhtml)
+    content/messenger/addressbook/abMailListDialog.xhtml        (content/abMailListDialog.xhtml)
+    content/messenger/addressbook/abContactsPanel.xhtml         (content/abContactsPanel.xhtml)
+    content/messenger/addressbook/abContactsPanel.js            (content/abContactsPanel.js)
+*   content/messenger/addressbook/abSearchDialog.xhtml          (content/abSearchDialog.xhtml)
+    content/messenger/addressbook/abSearchDialog.js             (content/abSearchDialog.js)
+    content/messenger/addressbook/menulist-addrbooks.js         (content/menulist-addrbooks.js)
+
+    content/messenger/addressbook/aboutAddressBook.js           (content/aboutAddressBook.js)
+*   content/messenger/addressbook/aboutAddressBook.xhtml        (content/aboutAddressBook.xhtml)
+    content/messenger/addressbook/addressBookTab.js             (content/addressBookTab.js)
+# TODO: Rename this after removal of mailnews/addrbook/content/abView.js.
+    content/messenger/addressbook/abView-new.js                 (content/abView-new.js)
+# Edit view
+    content/messenger/addressbook/edit/adr.js                   (content/vcard-edit/adr.js)
+    content/messenger/addressbook/edit/custom.js                (content/vcard-edit/custom.js)
+    content/messenger/addressbook/edit/edit.js                  (content/vcard-edit/edit.js)
+    content/messenger/addressbook/edit/email.js                 (content/vcard-edit/email.js)
+    content/messenger/addressbook/edit/fn.js                    (content/vcard-edit/fn.js)
+    content/messenger/addressbook/edit/impp.js                  (content/vcard-edit/impp.js)
+    content/messenger/addressbook/edit/n.js                     (content/vcard-edit/n.js)
+    content/messenger/addressbook/edit/nickname.js              (content/vcard-edit/nickname.js)
+    content/messenger/addressbook/edit/note.js                  (content/vcard-edit/note.js)
+    content/messenger/addressbook/edit/org.js                   (content/vcard-edit/org.js)
+    content/messenger/addressbook/edit/special-date.js          (content/vcard-edit/special-date.js)
+    content/messenger/addressbook/edit/tel.js                   (content/vcard-edit/tel.js)
+    content/messenger/addressbook/edit/tz.js                    (content/vcard-edit/tz.js)
+    content/messenger/addressbook/edit/url.js                   (content/vcard-edit/url.js)

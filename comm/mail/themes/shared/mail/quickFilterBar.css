@@ -1,0 +1,118 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+/* :::: Filter Buttons :::: */
+
+#quick-filter-bar-main-bar toolbarbutton {
+  -moz-context-properties: fill, stroke, fill-opacity;
+  fill: color-mix(in srgb, currentColor 20%, transparent);
+  stroke: currentColor;
+}
+
+/* TEMPORARY: styles for supernova icons */
+#quick-filter-bar-main-bar .toolbarbutton-icon {
+  padding: 0px;
+  width: 16px;
+  height: 16px;
+  margin-block-start: -1px;
+}
+
+#quick-filter-bar-main-bar .toolbarbutton-text {
+  margin-inline-start: 3px;
+}
+
+#quick-filter-bar-main-bar .icon-only .toolbarbutton-text {
+  margin-inline-start: 0px;
+}
+
+#qfb-sticky {
+  list-style-image: var(--icon-pin);
+}
+
+#qfb-unread {
+  list-style-image: var(--icon-unread);
+}
+
+#qfb-starred {
+  list-style-image: var(--icon-star);
+}
+
+#qfb-inaddrbook {
+  list-style-image: var(--icon-address-book);
+}
+
+#qfb-tags {
+  list-style-image: var(--icon-tag);
+}
+
+#qfb-attachment {
+  list-style-image: var(--icon-attachment);
+}
+
+#quick-filter-bar[disabled="true"] {
+  visibility: collapse;
+}
+
+#qfb-results-label {
+  color: GrayText;
+  text-align: end;
+  visibility: hidden;
+}
+
+#quick-filter-bar[filterActive="matches"] #qfb-results-label {
+  color: #4e9a06;
+}
+
+#quick-filter-bar[filterActive="nomatches"] #qfb-results-label {
+  color: #f66;
+}
+
+#qfb-qs-textbox {
+  -moz-box-flex: 3;
+}
+
+#quick-filter-bar-tab-bar {
+  -moz-box-flex: 2;
+}
+
+#qfb-filter-bar-spacer {
+  min-width: 4px !important;
+}
+
+.qfb-tag-button[inverted] {
+  text-decoration: line-through;
+}
+
+#quick-filter-bar-main-bar {
+  overflow: hidden;
+}
+
+#quick-filter-bar-expando {
+  border-bottom: 1px solid var(--chrome-content-separator-color);
+}
+
+#quick-filter-bar-collapsible-buttons[shrink="true"] toolbarbutton label.toolbarbutton-text {
+  display: none;
+}
+
+.qfb-tag-button > .toolbarbutton-icon,
+#quick-filter-bar-filter-text-bar > toolbarbutton > .toolbarbutton-icon {
+  display: none;
+}
+
+#threadTree[filterActive] {
+  background-repeat: no-repeat;
+  background-position: center;
+  -moz-context-properties: fill, fill-opacity;
+  fill: currentColor;
+  fill-opacity: .3;
+}
+
+#threadTree[filterActive="nomatches"] {
+  background-image: url("chrome://messenger/skin/icons/search-not-found.svg");
+}
+
+#threadTree[filterActive="searching"] {
+  background-image: url("chrome://messenger/skin/icons/search-spinner.svg");
+}

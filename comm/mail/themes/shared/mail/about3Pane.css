@@ -1,0 +1,298 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, you can obtain one at http://mozilla.org/MPL/2.0/. */
+
+:root {
+  --in-content-button-border-radius: 3px;
+}
+
+@media not (prefers-contrast) {
+  :root {
+    --in-content-button-background: var(--grey-90-a10);
+    --in-content-button-background-hover: var(--grey-90-a20);
+    --in-content-button-background-active: var(--grey-90-a30);
+    --in-content-categories-background: #ebebef;
+    --in-content-item-selected-unfocused: var(--grey-20);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --in-content-categories-background: rgba(249, 249, 250, 0.1);
+      --in-content-item-selected-unfocused: rgba(249, 249, 250, 0.05);
+      --in-content-button-background: rgba(249, 249, 250, 0.1);
+      --in-content-button-background-hover: rgba(249, 249, 250, 0.15);
+      --in-content-button-background-active: rgba(249, 249, 250, 0.2);
+      --in-content-primary-button-background: #45a1ff;
+      --in-content-primary-button-background-hover: #65c1ff;
+      --in-content-primary-button-background-active: #85e1ff;
+      --in-content-focus-outline-color: #45a1ff;
+    }
+  }
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+
+  display: grid;
+  --splitter1-width: 18em;
+  --splitter2-width: 54em;
+  --splitter2-height: 36em;
+
+  font: message-box;
+}
+
+/* Different layouts */
+
+#folderTreePane {
+  grid-area: folders;
+  box-sizing: border-box;
+  /* Matches the collapse-width on the splitter. */
+  min-width: 200px;
+}
+
+#splitter1 {
+  grid-area: splitter1;
+}
+
+#threadTreePane {
+  grid-area: threads;
+  box-sizing: border-box;
+  min-height: 200px;
+  min-width: 300px;
+}
+
+#splitter2 {
+  grid-area: splitter2;
+}
+
+#messageBrowserPane {
+  grid-area: message;
+  box-sizing: border-box;
+  /* Matches the collapse-height and collapse-width on the splitter. */
+  min-height: 200px;
+  min-width: 300px;
+}
+
+#accountCentralBrowser {
+  grid-area: account-central;
+  box-sizing: border-box;
+  min-width: 400px;
+}
+
+:is(
+  #messageBrowserPane,
+  #folderTreePane
+).collapsed-by-splitter {
+  /* NOTE: We use "display: none" rather than "visibility: collapse". In the
+   * latter case, the min-width of min-height of the element would still
+   * influence the "auto" track sizing in the grid layout. In the former case
+   * the grid is completely missing a grid item for this track, so the "auto"
+   * size properly reduces to 0, as desired. Note that the track is indeed
+   * missing a grid item because each element in the body is explicitly placed
+   * in a grid-area, which means that there is no auto-placement of the grid
+   * items that would fill the track. */
+  display: none;
+}
+
+/* Classic layout: folder tree on the left, thread tree and message browser on the right. */
+body.layout-classic {
+  grid-template: "folders splitter1 threads" minmax(auto, 1fr)
+                 "folders splitter1 splitter2" min-content
+                 "folders splitter1 message" minmax(auto, var(--splitter2-height))
+                 / minmax(auto, var(--splitter1-width)) min-content minmax(auto, 1fr);
+}
+
+/* Vertical layout: three columns. */
+body.layout-vertical {
+  grid-template: "folders splitter1 threads splitter2 message" auto
+                 / minmax(auto, var(--splitter1-width)) min-content minmax(auto, 1fr) min-content minmax(auto, var(--splitter2-width));
+}
+
+/* Wide layout: folder tree and thread tree on the top, and message browser on the bottom. */
+body.layout-wide {
+  grid-template: "folders splitter1 threads" minmax(auto, 1fr)
+                 "splitter2 splitter2 splitter2" min-content
+                 "message message message" minmax(auto, var(--splitter2-height))
+                 / minmax(auto, var(--splitter1-width)) min-content minmax(auto, 1fr);
+}
+
+/* If Account Central is shown, it overrides the layout setting. */
+body.account-central {
+  grid-template: "folders splitter1 account-central" auto
+                 / minmax(auto, var(--splitter1-width)) min-content minmax(auto, 1fr);
+}
+
+body.account-central :is(
+  #threadTreePane,
+  #splitter2,
+  #messageBrowserPane,
+) {
+  display: none;
+}
+
+body:not(.account-central) #accountCentralBrowser {
+  display: none;
+}
+
+/* Folder tree pane. */
+
+#folderTreePane {
+  overflow: hidden auto;
+}
+
+#folderTree,
+#folderTree ul {
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  --depth: 0;
+  --indent: calc(16px * var(--depth));
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  -moz-context-properties: fill;
+  margin-inline: 6px;
+  border-radius: var(--in-content-button-border-radius);
+  fill: currentColor;
+  cursor: default;
+  padding-inline-start: var(--indent);
+}
+
+li.selected > .container {
+  background-color: var(--in-content-button-background);
+}
+
+li > .container:hover {
+  background-color: var(--in-content-item-hover);
+}
+
+#folderTree:focus-within li.selected > .container {
+  background-color: var(--in-content-item-selected);
+  color: var(--in-content-item-selected-text);
+}
+
+:is(li, thread-listrow) .twisty {
+  width: 22px;
+  height: 22px;
+}
+
+:is(li, thread-listrow):not(.children) .twisty-icon {
+  display: none;
+}
+
+:is(li, thread-listrow) .twisty-icon {
+  margin: 5px;
+}
+
+:is(li, thread-listrow).children.collapsed .twisty-icon {
+  transform: rotate(-90deg);
+}
+
+:is(li, thread-listrow).children.collapsed:dir(rtl) .twisty-icon {
+  transform: rotate(90deg);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :is(li, thread-listrow) .twisty-icon {
+    transition: transform 200ms ease;
+  }
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  -moz-context-properties: fill;
+  fill: currentColor;
+}
+
+.name {
+  flex: 1;
+  margin-inline: 7px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
+}
+
+.unreadCount {
+  display: none;
+  padding: 1px 4px;
+  border-radius: 12px;
+  background-color: var(--in-content-button-background);
+  color: white;
+  font-size: 0.85em;
+  font-weight: bold;
+  min-width: 16px;
+  text-align: center;
+  box-sizing: border-box;
+  margin-inline-end: 6px;
+}
+
+.unread > .container > .unreadCount {
+  display: unset;
+}
+
+ul:empty,
+li.collapsed > ul {
+  display: none;
+}
+
+/* Thread tree pane. */
+
+#threadTreePane {
+  overflow: auto;
+  display: flex;
+}
+
+#threadTreePane > tree-view-listbox {
+  flex: 1;
+  -moz-context-properties: fill;
+  fill: currentColor;
+}
+
+thread-listrow {
+  line-height: 22px;
+  margin-inline: 6px;
+  display: flex;
+  border-radius: var(--in-content-button-border-radius);
+}
+
+thread-listrow > span {
+  padding-inline: 4px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+thread-listrow > .senderCol {
+  width: 15%;
+}
+
+thread-listrow > .subjectCol {
+  flex: 1;
+}
+
+thread-listrow > .dateCol {
+  width: 10em;
+}
+
+/* Message browser pane. */
+
+#messageBrowserPane {
+  overflow: auto;
+  display: flex;
+}
+
+#webBrowser,
+#messageBrowser,
+#multiMessageBrowser {
+  flex: 1;
+}

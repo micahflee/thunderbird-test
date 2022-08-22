@@ -1,0 +1,60 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+.calendar-summary-table {
+  width: 100%;
+}
+
+.calendar-summary-table th {
+  user-select: text;
+  font-weight: normal;
+  padding-inline-end: 5px;
+  text-align: right;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+
+.calendar-summary-table td {
+  user-select: text;
+  padding-top: 0;
+  vertical-align: baseline;
+  width: 100%;
+}
+
+.calendar-summary-table .item-location-link > label {
+  margin-inline: 0;
+}
+
+.calendar-summary-table .item-organizer-cell {
+  margin-inline: 0px;
+}
+
+.calendar-summary-table .attachments-label {
+  vertical-align: top;
+}
+
+.item-attendees .item-attendees-list-container {
+  min-height: 48px;
+}
+
+.item-summary-splitter {
+  appearance: none;
+  border-style: none;
+  border-bottom: 1px solid var(--field-border-color);
+  min-height: 0;
+  height: 5px;
+  background-color: transparent;
+  margin: 5px;
+  position: relative;
+  z-index: 10;
+  transition: border-width .3s ease-in;
+}
+
+.item-summary-splitter[state="collapsed"] {
+  transition: border-color .3s;
+}
+
+.item-summary-splitter[state="collapsed"]:hover {
+  border-bottom: 4px solid SelectedItem;
+}
